@@ -2,7 +2,7 @@
   <div id="app">
     <img class="logo" src="./assets/logo.png">
     <h1 class="title is-1">Turnip Talk</h1>
-    <p class="subtitle is-4">Welcome! Lettuce talk veggies!</p>
+    <p v-if="this.$route.name == 'Welcome'" class="subtitle is-4">Welcome! Lettuce talk veggies!</p>
     <span class="icon">
       <i class="fal fa-salad fa-2x"></i>
     </span>
@@ -37,5 +37,6 @@ p {
 
 .icon {
   color: #82C91D;
+  margin: 0 0 20px;
 }
 </style>

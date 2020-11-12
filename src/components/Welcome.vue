@@ -1,6 +1,6 @@
 <template>
   <div class="main-welcome">
-    <form @submit.prevent="AddName">
+    <form @submit.prevent="enterChat">
       <div class="field box">
         <label for="name">
           What's your name?
@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    AddName () {
+    enterChat () {
       db.collection('users').add({
         name: this.name
       })
