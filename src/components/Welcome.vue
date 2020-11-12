@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import db from '../firebase/init'
+
 export default {
   name: 'Welcome',
   data () {
@@ -21,10 +23,13 @@ export default {
   },
   methods: {
     AddName () {
-      if (this.name) {
-        console.log(this.name)
-        this.name = ''
-      }
+      db.collection('users').add({
+        name: this.name
+      })
+        .then(() => {
+          this.$router.push({ name: 'Chat' })
+        })
+        .catch(err => console.log(err))
     }
   }
 }
