@@ -27,13 +27,6 @@ export default {
       } else {
         this.feedback = 'You must enter a name to join.'
       }
-      // db.collection('users').add({
-      //   name: this.name
-      // })
-      //   .then(() => {
-      //     this.$router.push({ name: 'Chat' })
-      //   })
-      //   .catch(err => console.log(err))
     }
   }
 }

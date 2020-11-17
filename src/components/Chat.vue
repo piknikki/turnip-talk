@@ -2,9 +2,13 @@
   <div>
     <div class="main-chat box">
       <div v-if="messages.length > 0">
-        <div class="main-msg" v-for="msg in messages" :key="msg.id">
-          {{ msg.user }}: {{ msg.content }}
-        </div>
+        <ul class="main-msg" v-for="msg in messages" :key="msg.id">
+          <li>
+            <span class="has-text-primary">{{ msg.name }}</span>
+            <span class="has-text-grey-dark">{{ msg.content }}</span>
+            <span class="has-text-grey time">{{ msg. timestamp | formatDate }}</span>
+          </li>
+        </ul>
       </div>
     </div>
     <div>What's up, {{ name }}?</div>
@@ -48,5 +52,15 @@ export default {
 
 .main-msg {
   padding: 10px;
+}
+
+.main-chat span {
+  font-size: 1.4em;
+  margin: 5px 10px;
+}
+
+.main-chat .time {
+  display: block;
+  font-size: 1.2em;
 }
 </style>

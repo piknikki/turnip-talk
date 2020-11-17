@@ -26,7 +26,7 @@ export default {
     AddMessage () {
       db.collection('messages').add({
         content: this.newMessage,
-        user: this.user,
+        name: this.name,
         timestamp: new Date()
       })
     }
