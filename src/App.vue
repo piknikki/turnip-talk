@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.png">
+    <router-link to="/">
+      <img class="logo" src="./assets/logo.png">
+    </router-link>
     <h1 class="title is-1">Turnip Talk</h1>
     <p v-if="this.$route.name == 'Welcome'" class="subtitle is-4">Welcome! Lettuce talk veggies!</p>
     <span class="icon">
