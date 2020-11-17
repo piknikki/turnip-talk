@@ -2,8 +2,12 @@
   <div class="add-message box">
     <h4>new message</h4>
     <form @submit.prevent="AddMessage">
-      <label for="newMessage">Lettuce hear it: </label>
-      <input name="newMessage" type="text" v-model="newMessage">
+      <div class="field is-horizontal">
+        <label for="newMessage">Lettuce hear it: </label>
+        <div class="control">
+          <input name="newMessage" type="text" v-model="newMessage">
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -31,5 +35,15 @@ export default {
 </script>
 
 <style scoped>
+.add-message {
+  padding: 30px;
+  width: 50%;
+  text-align: left;
+  margin: 20px auto;
+}
+
+label {
+  padding-right: 20px;
+}
 
 </style>

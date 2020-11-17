@@ -5,6 +5,7 @@
         <label for="name">
           What's your name?
         </label>
+        <p v-if="feedback" class="feedback">{{ feedback }}</p>
         <input type="text" name="name" v-model="name">
       </div>
     </form>
@@ -12,8 +13,6 @@
 </template>
 
 <script>
-import db from '../firebase/init'
-
 export default {
   name: 'Welcome',
   data () {
@@ -23,13 +22,18 @@ export default {
   },
   methods: {
     enterChat () {
-      db.collection('users').add({
-        name: this.name
-      })
-        .then(() => {
-          this.$router.push({ name: 'Chat' })
-        })
-        .catch(err => console.log(err))
+      if (this.name) {
+        this.$router.push({ name: 'Chat', params: {name: this.name} })
+      } else {
+        this.feedback = 'You must enter a name to join.'
+      }
+      // db.collection('users').add({
+      //   name: this.name
+      // })
+      //   .then(() => {
+      //     this.$router.push({ name: 'Chat' })
+      //   })
+      //   .catch(err => console.log(err))
     }
   }
 }

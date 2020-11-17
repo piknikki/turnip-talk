@@ -7,6 +7,7 @@
         </div>
       </div>
     </div>
+    <div>What's up, {{ name }}?</div>
     <NewMessage />
   </div>
 </template>
@@ -17,6 +18,7 @@ import NewMessage from './NewMessage'
 
 export default {
   name: 'Chat',
+  props: ['name'],
   components: {NewMessage},
   data () {
     return {
@@ -41,7 +43,7 @@ export default {
   padding: 30px;
   width: 50%;
   text-align: left;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .main-msg {
