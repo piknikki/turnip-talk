@@ -1,12 +1,10 @@
 <template>
   <div class="add-message box">
-    <h4>new message</h4>
-    <form @submit.prevent="AddMessage">
+    <form @submit.prevent="addMessage">
       <div class="field is-horizontal">
-        <label for="newMessage">Lettuce hear it: </label>
-        <div class="control">
-          <input name="newMessage" type="text" v-model="newMessage">
-        </div>
+        <label for="new-message">Lettuce hear it: </label>
+          <input class="input" name="new-message" type="text" v-model="newMessage">
+          <p class="feedback has-text-danger" v-if="feedback">{{ feedback }}</p>
       </div>
     </form>
   </div>
@@ -17,18 +15,27 @@ import db from '../firebase/init'
 
 export default {
   name: 'NewMessage',
+  props: ['name'],
   data () {
     return {
-      newMessage: null
+      newMessage: null,
+      feedback: null
     }
   },
   methods: {
-    AddMessage () {
-      db.collection('messages').add({
-        content: this.newMessage,
-        name: this.name,
-        timestamp: new Date()
-      })
+    addMessage () {
+      if (this.newMessage) {
+        db.collection('messages').add({
+          content: this.newMessage,
+          name: this.name,
+          timestamp: Date.now()
+        })
+          .catch(err => console.log(err))
+        this.newMessage = null
+        this.feedback = null
+      } else {
+        this.feedback = 'you must enter a message in order to send one.'
+      }
     }
   }
 }
@@ -44,6 +51,10 @@ export default {
 
 label {
   padding-right: 20px;
+}
+
+.feedback {
+  padding: 20px 0;
 }
 
 </style>

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div>What's up, {{ name }}?</div>
-    <NewMessage />
+    <NewMessage v-bind:name="name"/>
   </div>
 </template>
 

@@ -17,7 +17,8 @@ export default {
   name: 'Welcome',
   data () {
     return {
-      name: null
+      name: null,
+      feedback: null
     }
   },
   methods: {
