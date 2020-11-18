@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="main-chat box">
-      <div v-if="messages.length > 0">
-        <ul class="main-msg" v-for="msg in messages" :key="msg.id">
-          <li>
+    <div class="main-chat">
+      <div class="box" v-if="messagesArray.length > 0">
+        <ul>
+          <li class="main-msg" v-for="msg in messagesArray" :key="msg.id">
             <span class="has-text-primary">{{ msg.name }}</span>
             <span class="has-text-grey-dark">{{ msg.content }}</span>
-            <span class="has-text-grey time">{{ msg. timestamp | formatDate }}</span>
+            <span class="has-text-grey time">{{ msg. timestamp }}</span>
           </li>
         </ul>
       </div>
@@ -26,18 +26,25 @@ export default {
   components: {NewMessage},
   data () {
     return {
-      messages: []
+      messagesArray: []
     }
   },
   created () {
-    db.collection('messages').get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          let message = doc.data()
-          message.id = doc.id
-          this.messages.push(message)
-        })
+    let ref = db.collection('messages').orderBy('timestamp')
+
+    ref.onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if (change.type === 'added') {
+          let doc = change.doc
+          this.messagesArray.push({
+            id: doc.id,
+            name: doc.data().name,
+            content: doc.data().content,
+            timestamp: doc.data().timestamp
+          })
+        }
       })
+    })
   }
 }
 </script>
