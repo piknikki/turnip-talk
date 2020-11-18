@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="main-chat">
-      <div class="box" v-if="messagesArray.length > 0">
-        <ul>
+      <div class="box chat-history" v-if="messagesArray.length > 0">
+        <ul class="messages" v-chat-scroll>
           <li class="main-msg" v-for="msg in messagesArray" :key="msg.id">
             <span class="has-text-primary">{{ msg.name }}</span>
             <span class="has-text-grey-dark">{{ msg.content }}</span>
@@ -70,5 +70,26 @@ export default {
 .main-chat .time {
   display: block;
   font-size: 0.8em;
+}
+
+.messages {
+  max-height: 300px;
+  overflow: auto;
+  max-width: 600px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.messages::-webkit-scrollbar {
+  width: 3px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #aaa;
 }
 </style>
