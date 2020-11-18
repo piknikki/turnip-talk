@@ -19,6 +19,7 @@
 <script>
 import db from '../firebase/init'
 import NewMessage from './NewMessage'
+import moment from 'moment'
 
 export default {
   name: 'Chat',
@@ -40,7 +41,7 @@ export default {
             id: doc.id,
             name: doc.data().name,
             content: doc.data().content,
-            timestamp: doc.data().timestamp
+            timestamp: moment(doc.data().timestamp).format('lll')
           })
         }
       })
@@ -63,11 +64,11 @@ export default {
 
 .main-chat span {
   font-size: 1.4em;
-  margin: 5px 10px;
+  margin: 0 10px;
 }
 
 .main-chat .time {
   display: block;
-  font-size: 1.2em;
+  font-size: 0.8em;
 }
 </style>
